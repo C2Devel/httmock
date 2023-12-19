@@ -1,6 +1,6 @@
-%global dist_raw %(%{__grep} -oP "release \\K[0-9]+\\.[0-9]+" /etc/system-release | tr -d ".")
+%global dist_raw %(%{__grep} -oP "\\b[0-9]+\\.[0-9]+\\b" /etc/system-release | tr -d ".")
 
-%if 0%{?el8}
+%if 0%{?rhel} == 8 || 0%{?redos} == 7
 %global el_python3_pkgversion 3
 %else
 %global el_python3_pkgversion 36
