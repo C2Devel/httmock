@@ -1,6 +1,6 @@
-%global dist_raw %(%{__grep} -oP "release \\K[0-9]+\\.[0-9]+" /etc/system-release | tr -d ".")
+%global dist_raw %(%{__grep} -oP "\\b[0-9]+\\.[0-9]+\\b" /etc/system-release | tr -d ".")
 
-%if 0%{?el8}
+%if 0%{?rhel} == 8 || 0%{?redos} == 7
 %global el_python3_pkgversion 3
 %else
 %global el_python3_pkgversion 36
@@ -13,7 +13,7 @@
 Name: python-%{pkgname}
 Summary: %{sum}
 Version: 1.3.0
-Release: 2.CROC3%{?dist}
+Release: 2.CROC4%{?dist}
 License: Apache License, Version 2.0
 
 Group: Development/Testing
@@ -59,6 +59,9 @@ rm -rf %{buildroot}
 %doc README.md LICENSE
 
 %changelog
+* Tue Dec 19 2023 Grigoriy Kulagin <grkulagin@croc.ru> 1.3.0-2.CROC4
+- Add redos support
+
 * Mon Jan 16 2023 Ivan Konov <ikonov@croc.ru> 1.3.0-2.CROC3
 - Fix package names for py3 builds
 - Remove py2 support
