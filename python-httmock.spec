@@ -13,7 +13,7 @@
 Name: python-%{pkgname}
 Summary: %{sum}
 Version: 1.3.0
-Release: 2.CROC4%{?dist}
+Release: 2.ROCKIT5%{?dist}
 License: Apache License, Version 2.0
 
 Group: Development/Testing
