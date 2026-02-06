@@ -1,11 +1,5 @@
 %global dist_raw %(%{__grep} -oP "\\b[0-9]+\\.[0-9]+\\b" /etc/system-release | tr -d ".")
 
-%if 0%{?rhel} == 8 || 0%{?redos} == 7
-%global el_python3_pkgversion 3
-%else
-%global el_python3_pkgversion 36
-%endif
-
 %define pkgname httmock
 %global sum A mocking library for requests
 %global descr A mocking library for `requests` for Python.
@@ -13,7 +7,7 @@
 Name: python-%{pkgname}
 Summary: %{sum}
 Version: 1.3.0
-Release: 2.ROCKIT5%{?dist}
+Release: 2.ROCKIT6%{?dist}
 License: Apache License, Version 2.0
 
 Group: Development/Testing
@@ -27,10 +21,10 @@ BuildArch: noarch
 
 %package -n python%{python3_pkgversion}-%{pkgname}
 Summary:       %{sum}
-Requires:      python%{el_python3_pkgversion}-requests >= 1.0.0
+Requires:      python%{python3_pkgversion}-requests >= 1.0.0
 BuildRequires: python%{python3_pkgversion}-devel
 BuildRequires: python%{python3_pkgversion}-requests >= 1.0.0
-BuildRequires: python%{el_python3_pkgversion}-nose
+BuildRequires: python%{python3_pkgversion}-nose
 
 %description -n python%{python3_pkgversion}-%{pkgname}
 %{descr}
@@ -59,6 +53,9 @@ rm -rf %{buildroot}
 %doc README.md LICENSE
 
 %changelog
+* Fri Feb 06 2026 Evgenii Pozdniakov <epozdniakov@k2.cloud> 1.3.0-2.ROCKIT6
+- Remove el7 support
+
 * Tue Dec 19 2023 Grigoriy Kulagin <grkulagin@croc.ru> 1.3.0-2.CROC4
 - Add redos support
 
